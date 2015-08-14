@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import "ShareView.h"
 @interface ViewController ()<WXApiDelegate>
 
 @end
@@ -28,27 +29,35 @@
 
 - (IBAction)shareToWechat:(UIButton *)sender {
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"shareToWechat" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *wechat = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        [self sendMessageToWechatWithType:0];
-    }];
+    ShareView *shareView = [[ShareView alloc] init];
+    shareView.text = @"哈哈哈";
+    shareView.detailText = @"嘿嘿嘿嘿嘿嘿";
+    shareView.url = @"www.baidu.com";
+    [shareView show];
     
-    UIAlertAction *friend = [UIAlertAction actionWithTitle:@"朋友圈" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        [self sendMessageToWechatWithType:1];
-    }];
-    
-    UIAlertAction *collection = [UIAlertAction actionWithTitle:@"收藏" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        [self sendMessageToWechatWithType:2];
-    }];
-    
-    [alertController addAction:wechat];
-    [alertController addAction:friend];
-    [alertController addAction:collection];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+  NSString *version = [WXApi getApiVersion];
+    NSLog(@"version == %@",version);
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"shareToWechat" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+//    UIAlertAction *wechat = [UIAlertAction actionWithTitle:@"微信" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        
+//        [self sendMessageToWechatWithType:0];
+//    }];
+//    
+//    UIAlertAction *friend = [UIAlertAction actionWithTitle:@"朋友圈" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        
+//        [self sendMessageToWechatWithType:1];
+//    }];
+//    
+//    UIAlertAction *collection = [UIAlertAction actionWithTitle:@"收藏" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        
+//        [self sendMessageToWechatWithType:2];
+//    }];
+//    
+//    [alertController addAction:wechat];
+//    [alertController addAction:friend];
+//    [alertController addAction:collection];
+//    
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
